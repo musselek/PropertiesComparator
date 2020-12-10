@@ -93,7 +93,6 @@ namespace Comparator
             var c2 = new Complex { 
                 Prop1 = new List<SomeClass> { new SomeClass { P1 = 1, P2 = "a", P3 = 1.1, P4 = "B" } },
                 Prop2 = new List<Example> { new Example { Prop1 = "a1", Prop2 = 12, Prop4 = new Insurance { Code = "c2", Name = "n2" } } }
-
             };
 
             var rep = c1.Prop1.DifferenceWith(c2.Prop1).WithKeys(x => x.P1).ToCompare(x => x.P2)

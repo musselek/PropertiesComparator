@@ -78,7 +78,7 @@ in case if item is null then comparison looks *item1 == item2*
 
 ## Example
 ###### Comparator Composer
-They are a list of data from xml
+They are a list of data from xml like in example below
 ```csharp
 class Example
 {
@@ -108,6 +108,8 @@ class ComplexComparer : ComparatorComposer<Complex>
 {
     public ComplexComparer()
     {
+        //here user is able to define its own comparator or can build the defaut one 
+        
         Compare(x => x.Prop1, (x,y) => 
             x.DifferenceWith(y)
              .ProcessData(before: x => DataChanger(x, 111))
@@ -139,8 +141,14 @@ class ComplexComparer : ComparatorComposer<Complex>
 
 public void Test()
 {
-    var before = new Complex { Prop1 = new List<SomeClass> { new SomeClass { P1 = 1, P2 = "A", P3 = 1.1, P4 = "b" } } };
-    var after = new Complex { Prop1 = new List<SomeClass> { new SomeClass { P1 = 1, P2 = "a", P3 = 1.1, P4 = "B" } } };
+    var c1 = new Complex {
+                Prop1 = new List<SomeClass> { new SomeClass { P1 = 1, P2 = "A", P3 = 1.1, P4 = "b" } } ,
+                Prop2 = new List<Example> { new Example { Prop1= "a1", Prop2 = 11, Prop4 = new Insurance { Code = "c1" , Name = "n1" } } }
+                };
+    var c2 = new Complex { 
+                Prop1 = new List<SomeClass> { new SomeClass { P1 = 1, P2 = "a", P3 = 1.1, P4 = "B" } },
+                Prop2 = new List<Example> { new Example { Prop1 = "a1", Prop2 = 12, Prop4 = new Insurance { Code = "c2", Name = "n2" } } }
+            };
 
     var complexComparer = new ComplexComparer();
 
